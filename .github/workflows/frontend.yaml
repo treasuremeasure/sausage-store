@@ -25,6 +25,6 @@ jobs:
 
       - name: Build with Maven
         working-directory: frontend        
-        run: npm package -DskipTests=true
+        run: npm -DskipTests=true
 
     
