@@ -1,0 +1,30 @@
+name: Frontend Build
+
+on:
+  push:    
+    branches:      
+      - main  
+  pull_request:    
+    branches:      
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+    
+      - name: Set up Node 14
+        uses: actions/setup-node@v2
+        with:          
+          distribution: 'adopt'          
+          java-version: '14'
+
+      - name: Build with Maven
+        working-directory: frontend        
+        run: npm package -DskipTests=true
+
+    
