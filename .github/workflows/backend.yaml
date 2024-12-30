@@ -22,19 +22,15 @@ jobs:
         distribution: 'adopt'          
         java-version: '16'
 
-    - name: Build with Maven
-      working-directory: backend        
+    - name: Build without tests
+      working-directory: backend
       run: mvn package -DskipTests=true
 
-    - name: Run integration tests
-      working-directory: backend
-      run: mvn integration-test
-        
     - name: Run Checkstyle
       working-directory: backend
-      run: mvn checkstyle:check
+      run: mvn verify -Dcheckstyle.skip=false
 
     - name: Run SpotBugs
       working-directory: backend
-      run: mvn spotbugs:check
+      run: mvn verify -Dspotbugs.skip=false
       continue-on-error: true
